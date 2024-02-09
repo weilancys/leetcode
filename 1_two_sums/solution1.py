@@ -1,6 +1,9 @@
 nums = [2,7,11,15]
 target = 9
 
+# time complexity: O(n2)
+# space complexity: O(1)
+
 # brute force approach
 class Solution:
     def twoSum(self, nums, target: int):
