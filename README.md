@@ -1,1 +1,2 @@
-my daily exercises
+- my daily exercises
+- [grind 75](https://www.techinterviewhandbook.org/grind75)
