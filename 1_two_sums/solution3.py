@@ -12,7 +12,7 @@ class Solution:
         registry = {}
         for i in range(len(nums)):
             complement = target - nums[i]
-            if registry.get(complement) is not None and registry.get(complement) != i:
+            if registry.get(complement) is not None:
                 return [i, registry.get(complement)]
             registry[nums[i]] = i
         
