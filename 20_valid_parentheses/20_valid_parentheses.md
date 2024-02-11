@@ -5,7 +5,7 @@
 - easy
 
 ### solution
-- -
+- https://www.youtube.com/watch?v=WTzjTskDFMg
 
 ### notes
 - -

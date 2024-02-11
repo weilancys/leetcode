@@ -7,6 +7,9 @@ s4 = "([)}"
 # if the current parenthesis closes the previous one, pop the stack, otherwise put the current parenthesis on the stack
 # fully closed parentheses should have a clean stack in the end
 
+# time complexity: O(n)
+# space complexity: O(n)
+
 class Solution:
     def isValid(self, s: str) -> bool:
         stack = []

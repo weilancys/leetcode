@@ -7,6 +7,9 @@ s4 = "([)}"
 # if one of ] } ) has to be put onto the stack, just return False immediately
 # because in that case there's no chance it's a valid input
 
+# time complexity: O(n)
+# space complexity: O(n)
+
 class Solution:
     def isValid(self, s: str) -> bool:
         stack = []
