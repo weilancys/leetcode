@@ -5,6 +5,6 @@
 - easy
 
 ### solution
-- -
+- https://www.youtube.com/watch?v=OnSn2XEQ4MY
 ### notes
 - -
