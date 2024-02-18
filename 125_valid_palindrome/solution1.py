@@ -1,3 +1,10 @@
+# time complexity: O(n)
+# space complexity: O(n)
+
+# first get rid of all non-alphanumeric chars in the string and make a new cleaned string
+# then use two pointers pointing at both ends and progressivly compares the chars they point to before moving them towards each other
+# just before the two pointers pass each other, stop
+
 s = "A man, a plan, a canal: Panama"
 # s = "race a car"
 # s = " "
@@ -29,6 +36,6 @@ class Solution:
         return s_cleaned
 
 if __name__ == "__main__":
-    solution = Solution()
-    result = solution.isPalindrome(s)
+    solution1 = Solution()
+    result = solution1.isPalindrome(s)
     print("is palindrome:", result)
