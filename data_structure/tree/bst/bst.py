@@ -15,6 +15,7 @@ class BST:
         if not self.root:
             new_node = self.Node(val)
             self.root = new_node
+            self.walk = self.root
         else:
             if val < self.walk.val:
                 if self.walk.left:
@@ -23,6 +24,7 @@ class BST:
                 else:
                     new_node = self.Node(val)
                     self.walk.left = new_node
+                    self.walk = self.root
             elif val > self.walk.val:
                 if self.walk.right:
                     self.walk = self.walk.right
@@ -30,9 +32,26 @@ class BST:
                 else:
                     new_node = self.Node(val)
                     self.walk.right = new_node
+                    self.walk = self.root
             else:
                 raise ValueError("bst should not contain identical values.")
-        self.walk = self.root
+            
+    def search(self, val):
+        if not self.walk:
+            self.walk = self.root
+            return
+        elif self.walk.val == val:
+            node = self.walk
+            self.walk = self.root
+            return node
+        elif val < self.walk.val:
+            self.walk = self.walk.left
+            return self.search(val)
+        elif val > self.walk.val:
+            self.walk = self.walk.right
+            return self.search(val)
+
+        
 
 
 if __name__ == "__main__":
@@ -41,3 +60,5 @@ if __name__ == "__main__":
     for i in l:
         root = bst.add(i)
     print(bst.root.right.left.val) # should output 55
+    print(bst.root.right.left) # should output address of node with val 55
+    print(bst.search(55)) # should be the same with above
