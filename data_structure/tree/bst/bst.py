@@ -8,50 +8,53 @@ class BST:
             self.right = None
 
     def __init__(self):
-        self.root = None
-        self.walk = None
+        self.__root = None
 
     def add(self, val):
-        if not self.root:
-            new_node = self.Node(val)
-            self.root = new_node
-            self.walk = self.root
-        else:
-            if val < self.walk.val:
-                if self.walk.left:
-                    self.walk = self.walk.left
-                    self.add(val)
+        def _add(walk, val):
+            if val < walk.val:
+                if walk.left:
+                    _add(walk.left, val)
                 else:
                     new_node = self.Node(val)
-                    self.walk.left = new_node
-                    self.walk = self.root
-            elif val > self.walk.val:
-                if self.walk.right:
-                    self.walk = self.walk.right
-                    self.add(val)
+                    walk.left = new_node
+            elif val > walk.val:
+                if walk.right:
+                    _add(walk.right, val)
                 else:
                     new_node = self.Node(val)
-                    self.walk.right = new_node
-                    self.walk = self.root
+                    walk.right = new_node
             else:
                 raise ValueError("bst should not contain identical values.")
+        
+        if self.__root:
+            _add(self.__root, val)
+        else:
+            new_node = self.Node(val)
+            self.__root = new_node
             
     def search(self, val):
-        if not self.walk:
-            self.walk = self.root
-            return
-        elif self.walk.val == val:
-            node = self.walk
-            self.walk = self.root
-            return node
-        elif val < self.walk.val:
-            self.walk = self.walk.left
-            return self.search(val)
-        elif val > self.walk.val:
-            self.walk = self.walk.right
-            return self.search(val)
-
+        def _search(walk, val):
+            if not walk:
+                return
+            elif walk.val == val:
+                return walk
+            elif val < walk.val:
+                return _search(walk.left, val)
+            elif val > walk.val:
+                return _search(walk.right, val)
+        return _search(self.__root, val)
         
+    def traversal(self):
+        arr = []
+        def _traversal(node, list):
+            if not node:
+                return
+            _traversal(node.left, arr)
+            list.append(node.val)
+            _traversal(node.right, arr)
+        _traversal(self.__root, arr)
+        return arr
 
 
 if __name__ == "__main__":
@@ -59,6 +62,5 @@ if __name__ == "__main__":
     bst = BST()
     for i in l:
         root = bst.add(i)
-    print(bst.root.right.left.val) # should output 55
-    print(bst.root.right.left) # should output address of node with val 55
-    print(bst.search(55)) # should be the same with above
+    arr = bst.traversal()
+    print(arr)
