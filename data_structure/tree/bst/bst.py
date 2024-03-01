@@ -59,7 +59,7 @@ class BST:
             if not node:
                 return
             _traversal(node.left, arr)
-            list.append(node.val)
+            list.append(node)
             _traversal(node.right, arr)
         _traversal(self.__root, arr)
         return arr
@@ -69,7 +69,7 @@ class BST:
         def _traversal(node, list):
             if not node:
                 return
-            list.append(node.val)
+            list.append(node)
             _traversal(node.left, arr)
             _traversal(node.right, arr)
         _traversal(self.__root, arr)
@@ -82,7 +82,7 @@ class BST:
                 return
             _traversal(node.left, arr)
             _traversal(node.right, arr)
-            list.append(node.val)
+            list.append(node)
         _traversal(self.__root, arr)
         return arr
 
