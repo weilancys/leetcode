@@ -1,5 +1,5 @@
 # references:
-# https://www.javatpoint.com/binary-search-tree
+# https://www.youtube.com/watch?v=gcULXE7ViZw
 # https://www.geeksforgeeks.org/binary-search-tree-traversal-inorder-preorder-post-order/
 
 class BST:
@@ -85,6 +85,68 @@ class BST:
             list.append(node)
         _traversal(self.__root, arr)
         return arr
+    
+    def __find_min(self, root):
+        walk = root
+        while walk and walk.left:
+            walk = walk.left
+        return walk
+
+    def delete(self, val):
+        walk = self.__root
+        parent = None
+        while walk:
+            if walk.val == val:
+                break
+            elif val < walk.val:
+                parent = walk
+                walk = walk.left
+            elif val > walk.val:
+                parent = walk
+                walk = walk.right
+        if walk is None:
+            return
+        if walk.left is None and walk.right is None:
+            if parent is None: # deleing the only one root node
+                self.__root = None
+                return
+            if parent.left == walk:
+                parent.left = None
+            elif parent.right == walk:
+                parent.right = None
+            return walk
+        elif walk.left and walk.right:
+            walk_inorder = walk.right
+            walk_inorder_parent = walk
+            while walk_inorder.left:
+                walk_inorder_parent = walk_inorder
+                walk_inorder = walk_inorder.left
+            temp = walk.val
+            walk.val = walk_inorder.val
+            walk_inorder.val = temp
+            if walk_inorder_parent.left == walk_inorder:
+                walk_inorder_parent.left = None
+            elif walk_inorder_parent.right == walk_inorder:
+                walk_inorder_parent.right = None
+            return walk_inorder
+        else:
+            if walk == self.__root:
+                if walk.left:
+                    self.__root = walk.left
+                elif walk.right:
+                    self.__root = walk.right
+            else:
+                if parent.left == walk:
+                    if walk.left:
+                        parent.left = walk.left
+                    elif walk.right:
+                        parent.left = walk.right
+                elif parent.right == walk:
+                    if walk.left:
+                        parent.right = walk.left
+                    elif walk.right:
+                        parent.right = walk.right
+            return walk        
 
 
 if __name__ == "__main__":
@@ -97,7 +159,15 @@ if __name__ == "__main__":
     # arr = bst.inorder_traversal()
     # node = bst.search(45)
     # print(node.val)
+    bst.delete(200)
+    bst.delete(100)
+    bst.delete(300)
+    bst.delete(150)
+    # bst.delete(20)
+    bst.delete(10)
+    bst.delete(30)
+    print([node.val for node in bst.inorder_traversal()])
     
-    print(bst.inorder_traversal())
-    print(bst.preorder_traversal())
-    print(bst.postorder_traversal())
+    # print(bst.inorder_traversal())
+    # print(bst.preorder_traversal())
+    # print(bst.postorder_traversal())
