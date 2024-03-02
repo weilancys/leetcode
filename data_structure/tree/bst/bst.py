@@ -86,6 +86,22 @@ class BST:
         _traversal(self.__root, arr)
         return arr
     
+    def traversal_bfs(self):
+        # traversal in bfs manner
+        if not self.__root:
+            return []
+        queue = []
+        arr = []
+        queue.append(self.__root)
+        while queue:
+            elem = queue.pop(0)
+            arr.append(elem)
+            if elem.left:
+                queue.append(elem.left)
+            if elem.right:
+                queue.append(elem.right)
+        return arr
+    
     def __find_min(self, root):
         walk = root
         while walk and walk.left:
@@ -146,7 +162,7 @@ class BST:
                         parent.right = walk.left
                     elif walk.right:
                         parent.right = walk.right
-            return walk        
+            return walk 
 
 
 if __name__ == "__main__":
@@ -156,17 +172,20 @@ if __name__ == "__main__":
     bst = BST()
     for i in l:
         bst.insert(i)
+
+    arr = bst.traversal_bfs()
+    print([item.val for item in arr])
     # arr = bst.inorder_traversal()
     # node = bst.search(45)
     # print(node.val)
-    bst.delete(200)
-    bst.delete(100)
-    bst.delete(300)
-    bst.delete(150)
+    # bst.delete(200)
+    # bst.delete(100)
+    # bst.delete(300)
+    # bst.delete(150)
     # bst.delete(20)
-    bst.delete(10)
-    bst.delete(30)
-    print([node.val for node in bst.inorder_traversal()])
+    # bst.delete(10)
+    # bst.delete(30)
+    # print([node.val for node in bst.inorder_traversal()])
     
     # print(bst.inorder_traversal())
     # print(bst.preorder_traversal())
