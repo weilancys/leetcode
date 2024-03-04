@@ -16,14 +16,14 @@ public class SinglyLinkedList {
         head = null;
     }
 
-    Node prepend(int val) {
+    public Node prepend(int val) {
         Node node = new Node(val);
         node.next = head;
         head = node;
         return node;
     }
 
-    Node append(int val) {
+    public Node append(int val) {
         Node walk = head;
         if (walk == null) {
             return prepend(val);
@@ -35,7 +35,7 @@ public class SinglyLinkedList {
         return walk.next;
     }
 
-    void printList() {
+    public void printList() {
         Node walk = head;
         while (walk != null) {
             System.out.print(walk.val);
@@ -45,7 +45,7 @@ public class SinglyLinkedList {
         System.out.println();
     }
 
-    Node nodeAt(int idx) {
+    public Node nodeAt(int idx) {
         if (idx < 0) return null;
         int counter = 0;
         Node walk = head;
@@ -57,7 +57,7 @@ public class SinglyLinkedList {
         return null;
     }
 
-    Node insert(int idx, int val) {
+    public Node insert(int idx, int val) {
         if (idx <= 0) {
             return prepend(val);
         }
@@ -80,7 +80,7 @@ public class SinglyLinkedList {
         }
     }
 
-    Node delete(int val) {
+    public Node delete(int val) {
         Node walk = head;
         Node parent = null;
         while (walk != null) {
@@ -93,6 +93,15 @@ public class SinglyLinkedList {
                 return walk;
             }
             parent = walk;
+            walk = walk.next;
+        }
+        return null;
+    }
+
+    public Node search(int val) {
+        Node walk = head;
+        while (walk != null) {
+            if (walk.val == val) return walk;
             walk = walk.next;
         }
         return null;
