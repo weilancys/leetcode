@@ -9,10 +9,12 @@ public class Main {
         }
         System.out.printf("queue size: %d\n", queue.size());
         queue.display();
+        System.out.println(queue.isEmpty());
         for (int i = 0; i < 8; i++) {
             queue.dequeue();
         }
         System.out.printf("after deletion, queue size: %d\n", queue.size());
         queue.display();
+        System.out.println(queue.isEmpty());
     }
 }

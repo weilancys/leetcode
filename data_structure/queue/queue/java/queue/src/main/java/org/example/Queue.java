@@ -55,7 +55,7 @@ public class Queue {
     }
 
     public boolean isEmpty() {
-        return rear == null;
+        return rear == null && front == null;
     }
 
     public Node peek() {
