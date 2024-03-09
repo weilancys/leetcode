@@ -11,6 +11,7 @@ class BST:
 
     def __init__(self):
         self.__root = None
+        self.path_found = False
 
     def __insert(self, walk, val):
         if walk is None:
@@ -163,6 +164,30 @@ class BST:
                     elif walk.right:
                         parent.right = walk.right
             return walk 
+    
+    def path(self, val) -> list:
+        # search for path to the node with val
+        # returns a list indicating the path
+        self.path_found = False
+        trek = []
+        self.__path(self.__root, val, trek)
+        return trek
+    
+    def __path(self, current: Node, val: int, trek: list):
+        # used by path() method
+        # introduced a self.path_found instance variable
+        if not current or self.path_found:
+            return
+        if current not in trek:
+            trek.append(current)
+        if current.val == val:
+            self.path_found = True
+            return
+        self.__path(current.left, val, trek)
+        self.__path(current.right, val, trek)
+        if not self.path_found:
+            trek.remove(current)
+        
 
 
 if __name__ == "__main__":
@@ -173,8 +198,11 @@ if __name__ == "__main__":
     for i in l:
         bst.insert(i)
 
-    arr = bst.traversal_bfs()
-    print([item.val for item in arr])
+    trek = bst.path(30)
+    print([item.val for item in trek])
+
+    # arr = bst.traversal_bfs()
+    # print([item.val for item in arr])
     # arr = bst.inorder_traversal()
     # node = bst.search(45)
     # print(node.val)
