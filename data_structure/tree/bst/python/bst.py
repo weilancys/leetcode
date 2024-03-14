@@ -13,6 +13,9 @@ class BST:
         self.__root = None
         self.path_found = False
 
+    def get_root(self):
+        return self.__root
+
     def __insert(self, walk, val):
         if walk is None:
             node = self.Node(val)
@@ -188,18 +191,27 @@ class BST:
         if not self.path_found:
             trek.remove(current)
         
+    def depth(self, root: Node, level:int=0):
+        if not root:
+            return level - 1
+        return max(self.depth(root.left, level+1), self.depth(root.right, level+1))
 
 
 if __name__ == "__main__":
     # l = [45, 15, 79, 90, 10, 55, 12, 20, 50]
     # l = [45, 45, 45, 15, 79, 90, 10, 55, 12, 20, 50]
-    l = [100, 20, 200, 10, 30, 150, 300]
+    # l = [100, 20, 200, 10, 30, 150, 300]
+    l = [100, 20, 200, 10, 30, 150, 300, 40, 25, 50, 600,900, 1000]
     bst = BST()
     for i in l:
         bst.insert(i)
 
-    trek = bst.path(30)
-    print([item.val for item in trek])
+    d = bst.depth(bst.get_root())
+    print("depth:", d)
+    
+
+    # trek = bst.path(30)
+    # print([item.val for item in trek])
 
     # arr = bst.traversal_bfs()
     # print([item.val for item in arr])
