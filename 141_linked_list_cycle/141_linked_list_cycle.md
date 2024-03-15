@@ -7,4 +7,4 @@
 ### solution
 - https://www.youtube.com/watch?v=gBTe7lFR3vc
 ### notes
-- -
+- solution 3 is the most optimal
