@@ -1,3 +1,9 @@
+# time complexity: O(n)
+# space complexity: O(1)
+
+# dfs the tree and everytime dfs goes doen one more level, add one to a varible
+# return the maximum of the variable
+
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
